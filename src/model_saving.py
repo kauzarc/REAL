@@ -9,9 +9,6 @@ from transformers import (  # type: ignore
 
 from src.model import Model, ModelConfig
 
-BEFORE_DECODER_LAYERS = 3
-AFTER_DECODER_LAYERS = 3
-
 
 def load_rebel() -> Tuple[PreTrainedTokenizerFast, BartForConditionalGeneration]:
     tokenizer = AutoTokenizer.from_pretrained("Babelscape/rebel-large")
@@ -20,11 +17,13 @@ def load_rebel() -> Tuple[PreTrainedTokenizerFast, BartForConditionalGeneration]
     return tokenizer, model
 
 
-def set_params(rebel_model: BartForConditionalGeneration, base_model: Model) -> None:
+def copy_params(rebel_model: BartForConditionalGeneration, base_model: Model) -> None:
     def update_key(key: str) -> str:
         if key.startswith("model.encoder.layers."):
             split_key = key.split(".")
-            split_key[3] = str(int(split_key[3]) + BEFORE_DECODER_LAYERS)
+            split_key[3] = str(
+                int(split_key[3]) + base_model.model.before_decoder_layers
+            )
 
             key = ".".join(split_key)
 
@@ -52,13 +51,13 @@ def main() -> None:
 
     model = Model(
         ModelConfig(
-            decoder_layers=rebel_model.config.decoder_layers
-            + BEFORE_DECODER_LAYERS
-            + AFTER_DECODER_LAYERS
+            before_decoder_layers=3,
+            after_decoder_layer=3,
+            **rebel_model.config.to_diff_dict()
         )
     )
 
-    set_params(rebel_model, model)
+    copy_params(rebel_model, model)
 
     model.save_pretrained("models/base_model")
 
