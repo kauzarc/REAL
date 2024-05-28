@@ -56,7 +56,7 @@ def copy_params(rebel_model: BartForConditionalGeneration, base_model: Model) ->
 
 def save_tokenizer() -> None:
     bart_tokenizer, _ = load_bart()
-    bart_tokenizer.save_pretrained("models/bart_tokenizer")
+    bart_tokenizer.save_pretrained("tokenizer/bart")
 
 
 def save_model() -> None:
