@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="model saving">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="better config">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model_saving.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model_saving.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716391900394</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="better config">
+      <option name="closed" value="true" />
+      <created>1716456234663</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716456234663</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +181,7 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="model" />
     <MESSAGE value="model saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="model saving" />
+    <MESSAGE value="better config" />
+    <option name="LAST_COMMIT_MESSAGE" value="better config" />
   </component>
 </project>

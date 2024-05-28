@@ -3,11 +3,19 @@ from typing import Tuple
 from transformers import (  # type: ignore
     AutoModelForSeq2SeqLM,
     AutoTokenizer,
+    BartTokenizerFast,
     PreTrainedTokenizerFast,
     BartForConditionalGeneration,
 )
 
 from src.model import Model, ModelConfig
+
+
+def load_bart() -> Tuple[BartTokenizerFast, BartForConditionalGeneration]:
+    tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
+    model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large")
+
+    return tokenizer, model
 
 
 def load_rebel() -> Tuple[PreTrainedTokenizerFast, BartForConditionalGeneration]:
@@ -46,7 +54,12 @@ def copy_params(rebel_model: BartForConditionalGeneration, base_model: Model) ->
     )
 
 
-def main() -> None:
+def save_tokenizer() -> None:
+    bart_tokenizer, _ = load_bart()
+    bart_tokenizer.save_pretrained("models/bart_tokenizer")
+
+
+def save_model() -> None:
     _, rebel_model = load_rebel()
 
     model = Model(
@@ -60,6 +73,11 @@ def main() -> None:
     copy_params(rebel_model, model)
 
     model.save_pretrained("models/base_model")
+
+
+def main() -> None:
+    save_tokenizer()
+    save_model()
 
 
 if __name__ == "__main__":
