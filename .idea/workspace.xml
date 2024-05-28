@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="better config">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="change tokenizer directory">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/End to End closed Information Extraction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/End to End closed Information Extraction.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model_saving.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model_saving.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716456234663</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="change tokenizer directory">
+      <option name="closed" value="true" />
+      <created>1716889788940</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716889788940</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +190,7 @@
     <MESSAGE value="model" />
     <MESSAGE value="model saving" />
     <MESSAGE value="better config" />
-    <option name="LAST_COMMIT_MESSAGE" value="better config" />
+    <MESSAGE value="change tokenizer directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="change tokenizer directory" />
   </component>
 </project>
