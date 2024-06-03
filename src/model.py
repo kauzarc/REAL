@@ -1,63 +1,65 @@
-import math
+from dataclasses import dataclass, asdict
+from typing import Optional, cast
 
-from torch.nn import Linear
+import torch
+from pytorch_lightning import LightningModule
+from torch import Tensor, LongTensor
 from transformers import (  # type: ignore
-    BartConfig,
-    BartModel,
+    PreTrainedTokenizerFast,
     BartForConditionalGeneration,
+    BartConfig,
 )
-from transformers.models.bart.modeling_bart import (  # type: ignore
-    BartDecoderLayer,
-    BartScaledWordEmbedding,
-)
+from transformers.modeling_outputs import Seq2SeqSequenceClassifierOutput  # type: ignore
+
+from src.utils import shift_tokens_left
 
 
-class ModelConfig(BartConfig):
+@dataclass
+class ForwardInputs:
+    input_ids: LongTensor
+    decoder_input_ids: Optional[LongTensor]
+
+
+@dataclass
+class Batch:
+    input_ids: LongTensor
+    labels: LongTensor
+
+
+@dataclass
+class ForwardOutput:
+    loss: Tensor
+    logits: Tensor
+
+
+class Model(LightningModule):
     def __init__(
         self,
-        *,
-        decoder_pad_token_id=1,
-        decoder_vocab_size=50265,
-        before_decoder_layers=3,
-        after_decoder_layer=3,
-        **kwargs
+        config: BartConfig,
+        tokenizer: PreTrainedTokenizerFast,
+        model: BartForConditionalGeneration,
     ):
-        super().__init__(**kwargs)
+        super().__init__()
 
-        self.decoder_pad_token_id = decoder_pad_token_id
-        self.decoder_vocab_size = decoder_vocab_size
-        self.before_decoder_layers = before_decoder_layers
-        self.after_decoder_layer = after_decoder_layer
+        self.config = config
+        self.tokenizer = tokenizer
+        self.model = model
+        self.loss_fn = torch.nn.CrossEntropyLoss(ignore_index=-100)
 
+    def forward(self, inputs: ForwardInputs, labels: LongTensor) -> ForwardOutput:
+        outputs: Seq2SeqSequenceClassifierOutput = self.model(
+            **asdict(inputs), use_cache=False, output_hidden_states=True
+        )
+        lprobs = torch.nn.functional.log_softmax(outputs.logits, dim=-1)
+        labels.masked_fill_(cast(Tensor, labels == -100), self.config.pad_token_id)
+        loss, _ = self.loss_fn(lprobs, labels, ignore_index=self.config.pad_token_id)
 
-class InnerModel(BartModel):
-    def __init__(self, config: ModelConfig):
-        super().__init__(config)
+        return ForwardOutput(loss, outputs.logits)
 
-        self.before_decoder_layers = config.before_decoder_layers
-        self.after_decoder_layer = config.after_decoder_layer
-
-        embed_scale = math.sqrt(config.d_model) if config.scale_embedding else 1.0
-        padding_idx, vocab_size = config.decoder_pad_token_id, config.decoder_vocab_size
-        self.decoder.embed_tokens = BartScaledWordEmbedding(
-            vocab_size, config.d_model, padding_idx, embed_scale=embed_scale
+    def training_step(self, batch: Batch) -> Tensor:
+        output = self.forward(
+            ForwardInputs(batch.input_ids, batch.labels),
+            shift_tokens_left(batch.labels, self.config.pad_token_id),
         )
 
-        self.decoder.layers.extend(
-            BartDecoderLayer(config)
-            for _ in range(self.before_decoder_layers + self.after_decoder_layer)
-        )
-
-        self.post_init()
-
-
-class Model(BartForConditionalGeneration):
-    def __init__(self, config: ModelConfig):
-        super().__init__(config)
-
-        self.model = InnerModel(config)
-        self.lm_head = Linear(
-            config.d_model, self.model.decoder.embed_tokens.num_embeddings, bias=False
-        )
-
-        self.post_init()
+        raise NotImplementedError()
