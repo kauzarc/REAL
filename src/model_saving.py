@@ -1,6 +1,6 @@
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, AutoConfig  # type: ignore
 
-from src.model import Model
+from src.pl_module import PLModule
 
 MODEL_NAME = "rebel"
 
@@ -12,7 +12,7 @@ def main() -> None:
         "Babelscape/rebel-large", config=config
     )
 
-    pl_model = Model(config, tokenizer, model)
+    pl_model = PLModule(config, tokenizer, model)
 
     pl_model.tokenizer.save_pretrained(f"models/{MODEL_NAME}")
     pl_model.model.save_pretrained(f"models/{MODEL_NAME}")

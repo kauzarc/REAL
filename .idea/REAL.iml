@@ -9,7 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/tokenizers" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.12 (.venv)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 (REAL)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
