@@ -1,12 +1,15 @@
-from pytorch_lightning import LightningModule
-from torch import FloatTensor
-from transformers import BartConfig, PreTrainedTokenizerFast, BartForConditionalGeneration  # type: ignore
-from transformers.modeling_outputs import Seq2SeqLMOutput  # type: ignore
-from transformers.optimization import AdamW
+from typing import List, Tuple, Any, Union, Dict, Optional
+
 from omegaconf import OmegaConf
+from pytorch_lightning import LightningModule
+from pytorch_lightning.utilities.types import STEP_OUTPUT
+from torch import FloatTensor
+from transformers import BartConfig, PreTrainedTokenizerFast, BartForConditionalGeneration, AdamW  # type: ignore
+from transformers.modeling_outputs import Seq2SeqLMOutput  # type: ignore
+from transformers.optimization import AdamW, get_scheduler
 
 from data import Batch
-from utils import shift_tokens_left
+from utils import shift_tokens_left, split_on_condition
 
 
 class PLModule(LightningModule):
@@ -24,10 +27,7 @@ class PLModule(LightningModule):
         self.tokenizer = tokenizer
         self.model = model
 
-    def forward(self):
-        raise NotImplementedError()
-
-    def training_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
+    def forward(self, batch: Batch, batch_idx: int) -> Seq2SeqLMOutput:
         batch_encoding = self.tokenizer(
             text=batch.inputs, text_target=batch.labels, return_tensors="pt"
         )
@@ -39,30 +39,46 @@ class PLModule(LightningModule):
                 batch_encoding.labels, self.config.pad_token_id
             ),
         }
+        return self.model(**inputs)
 
-        outputs: Seq2SeqLMOutput = self.model(**inputs)
+    def training_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
+        outputs = self.forward(batch, batch_idx)
         self.log("train_loss", outputs.loss)
         return outputs.loss  # type: ignore
 
-    def configure_optimizers(self) -> AdamW:
+    def validation_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
+        outputs = self.forward(batch, batch_idx)
+        self.log("validation_step", outputs.loss)
+        return outputs.loss  # type: ignore
+
+    def configure_optimizers(
+        self,
+    ) -> Tuple[List[AdamW], List[Dict[str, Union[str, Any]]]]:
         no_decay = ["bias", "LayerNorm.weight"]
-        optimizer_grouped_parameters = [
-            {
-                "params": [
-                    param
-                    for name, param in self.model.named_parameters()
-                    if not any(sub_string in name for sub_string in no_decay)
-                ],
-                "weight_decay": self.hparams.weight_decay,
-            },
-            {
-                "params": [
-                    param
-                    for name, param in self.model.named_parameters()
-                    if any(sub_string in name for sub_string in no_decay)
-                ],
-                "weight_decay": 0.0,
-            },
+
+        params_decay, params_no_decay = split_on_condition(
+            self.model.named_parameters(),
+            lambda x: not any(sub_string in x[0] for sub_string in no_decay),
+            lambda x: x[1],
+        )
+
+        grouped_parameters = [
+            {"params": params_decay, "weight_decay": self.hparams.weight_decay},
+            {"params": params_no_decay, "weight_decay": 0.0},
         ]
 
-        return AdamW(optimizer_grouped_parameters)  # type: ignore
+        args = {
+            "lr": self.hparams.learning_rate,
+            "betas": (self.hparams.adam_beta1, self.hparams.adam_beta2),
+            "eps": self.hparams.adam_epsilon,
+        }
+
+        optimizer = AdamW(grouped_parameters, **args)  # type: ignore
+        scheduler = get_scheduler(
+            self.hparams.lr_scheduler,
+            optimizer,
+            num_warmup_steps=self.hparams.warmup_steps,
+            num_training_steps=self.hparams.max_steps,
+        )
+
+        return [optimizer], [{"scheduler": scheduler, "interval": "step"}]
