@@ -1,21 +1,39 @@
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, AutoConfig  # type: ignore
+from typing import Tuple
 
-from src.pl_module import PLModule
+from transformers import (
+    AutoModelForSeq2SeqLM,
+    AutoTokenizer,
+    AutoConfig,
+    BartTokenizerFast,
+    BartForConditionalGeneration,
+)
 
-MODEL_NAME = "rebel"
+
+def load_model(
+    name: str,
+) -> Tuple[BartTokenizerFast, BartForConditionalGeneration]:
+    config = AutoConfig.from_pretrained(name)
+    tokenizer = AutoTokenizer.from_pretrained(name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(name, config=config)
+
+    return tokenizer, model
+
+
+def save_bart() -> None:
+    tokenizer, model = load_model("facebook/bart-large")
+    tokenizer.save_pretrained("models/bart-large")
+    model.save_pretrained("models/bart-large")
+
+
+def save_rebel() -> None:
+    tokenizer, model = load_model("Babelscape/rebel-large")
+    tokenizer.save_pretrained("models/rebel-large")
+    model.save_pretrained("models/rebel-large")
 
 
 def main() -> None:
-    config = AutoConfig.from_pretrained("Babelscape/rebel-large")
-    tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
-    model = AutoModelForSeq2SeqLM.from_pretrained(
-        "Babelscape/rebel-large", config=config
-    )
-
-    pl_model = PLModule(config, tokenizer, model)
-
-    pl_model.tokenizer.save_pretrained(f"models/{MODEL_NAME}")
-    pl_model.model.save_pretrained(f"models/{MODEL_NAME}")
+    save_bart()
+    save_rebel()
 
 
 if __name__ == "__main__":

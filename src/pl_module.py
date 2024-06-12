@@ -1,8 +1,7 @@
-from typing import List, Tuple, Any, Union, Dict, Optional
+from typing import List, Tuple, Any, Union, Dict
 
-from omegaconf import OmegaConf
+from omegaconf import DictConfig
 from pytorch_lightning import LightningModule
-from pytorch_lightning.utilities.types import STEP_OUTPUT
 from torch import FloatTensor
 from transformers import BartConfig, PreTrainedTokenizerFast, BartForConditionalGeneration, AdamW  # type: ignore
 from transformers.modeling_outputs import Seq2SeqLMOutput  # type: ignore
@@ -15,7 +14,7 @@ from utils import shift_tokens_left, split_on_condition
 class PLModule(LightningModule):
     def __init__(
         self,
-        omegaconf: OmegaConf,
+        omegaconf: DictConfig,
         config: BartConfig,
         tokenizer: PreTrainedTokenizerFast,
         model: BartForConditionalGeneration,
@@ -31,14 +30,19 @@ class PLModule(LightningModule):
         batch_encoding = self.tokenizer(
             text=batch.inputs, text_target=batch.labels, return_tensors="pt"
         )
+
+        labels = shift_tokens_left(batch_encoding.labels, self.config.pad_token_id)
+
+        if self.hparams.ignore_pad_token_for_loss:
+            labels.masked_fill_(labels == self.config.pad_token_id, -100)
+
         inputs = {
             "input_ids": batch_encoding.input_ids,
             "attention_mask": batch_encoding.attention_mask,
             "decoder_input_ids": batch_encoding.labels,
-            "labels": shift_tokens_left(
-                batch_encoding.labels, self.config.pad_token_id
-            ),
+            "labels": labels,
         }
+
         return self.model(**inputs)
 
     def training_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
@@ -48,7 +52,7 @@ class PLModule(LightningModule):
 
     def validation_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
         outputs = self.forward(batch, batch_idx)
-        self.log("validation_step", outputs.loss)
+        self.log("validation_loss", outputs.loss)
         return outputs.loss  # type: ignore
 
     def configure_optimizers(
