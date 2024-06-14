@@ -7,7 +7,7 @@ from transformers import BartConfig, PreTrainedTokenizerFast, BartForConditional
 from transformers.modeling_outputs import Seq2SeqLMOutput  # type: ignore
 from transformers.optimization import AdamW, get_scheduler
 
-from data import Batch
+from pl_data_module import Batch
 from utils import shift_tokens_left, split_on_condition
 
 
