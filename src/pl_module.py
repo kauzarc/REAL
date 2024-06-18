@@ -52,7 +52,7 @@ class PLModule(LightningModule):
 
     def validation_step(self, batch: Batch, batch_idx: int) -> FloatTensor:
         outputs = self.forward(batch, batch_idx)
-        self.log("validation_loss", outputs.loss)
+        self.log("val_loss", outputs.loss)
         return outputs.loss  # type: ignore
 
     def configure_optimizers(

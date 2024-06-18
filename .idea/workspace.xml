@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="model saving">
-      <change afterPath="$PROJECT_DIR$/datasets/docred_e2e.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/rebel-short.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasets/rebel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/extract_tokens.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="extract tokens">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/data/default_data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/data/rebel_data.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/model/default_model.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/model/default_model.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/data/rebel_data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/data/rebel_data.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/model/default_model.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/model/rebel_model.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/train/default_train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/train/default_train.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,21 +56,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.Python tests for test_model.TestModel.executor": "Run",
-    "Python.extract_tokens.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.model_saving.executor": "Run",
-    "Python.pl_module.executor": "Run",
-    "Python.tokenizer_saving.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/kauzarc/PycharmProjects/REAL",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_model.TestModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_tokens.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model_saving.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pl_module.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tokenizer_saving.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kauzarc/PycharmProjects/REAL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -329,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718199023659</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="extract tokens">
+      <option name="closed" value="true" />
+      <created>1718354559645</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718354559645</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -355,6 +357,7 @@
     <MESSAGE value="requirements" />
     <MESSAGE value="pl_module" />
     <MESSAGE value="model saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="model saving" />
+    <MESSAGE value="extract tokens" />
+    <option name="LAST_COMMIT_MESSAGE" value="extract tokens" />
   </component>
 </project>

@@ -1,4 +1,4 @@
 defaults:
   - train: default_train
-  - model: default_model
+  - model: rebel_model
   - data: rebel_data
