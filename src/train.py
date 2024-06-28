@@ -53,6 +53,7 @@ def main(conf: DictConfig):
         conf.model_name_or_path,
         config=config,
     )
+    model.resize_token_embeddings(len(tokenizer))
 
     pl_data_module = PLDataModule(conf, tokenizer, model)
     pl_module = PLModule(conf, config, tokenizer, model)

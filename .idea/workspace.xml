@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="extract tokens">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/data/rebel_data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/data/rebel_data.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/model/default_model.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/model/rebel_model.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/train/default_train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/train/default_train.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/rebel.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/rebel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl_data_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +64,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/kauzarc/PycharmProjects/REAL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -331,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718354559645</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="config">
+      <option name="closed" value="true" />
+      <created>1718716491279</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718716491279</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -358,6 +362,7 @@
     <MESSAGE value="pl_module" />
     <MESSAGE value="model saving" />
     <MESSAGE value="extract tokens" />
-    <option name="LAST_COMMIT_MESSAGE" value="extract tokens" />
+    <MESSAGE value="config" />
+    <option name="LAST_COMMIT_MESSAGE" value="config" />
   </component>
 </project>
