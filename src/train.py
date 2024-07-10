@@ -48,7 +48,14 @@ def main(conf: DictConfig):
     seed_everything(conf.seed)
 
     config = AutoConfig.from_pretrained(conf.config_name)
+
     tokenizer = AutoTokenizer.from_pretrained(conf.tokenizer_name)
+    with open(conf.tokens_file, "r") as tokens_file:
+        tokenizer.add_special_tokens(
+            {"additional_special_tokens": [f"<{token}>" for token in tokens_file]},
+            replace_additional_special_tokens=False,
+        )
+
     model = AutoModelForSeq2SeqLM.from_pretrained(
         conf.model_name_or_path,
         config=config,

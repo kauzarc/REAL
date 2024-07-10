@@ -27,20 +27,18 @@ class PLModule(LightningModule):
         self.model = model
 
     def forward(self, batch: Batch, batch_idx: int) -> Seq2SeqLMOutput:
-        batch_encoding = self.tokenizer(
-            text=batch.inputs, text_target=batch.labels, return_tensors="pt"
-        )
-
-        labels = shift_tokens_left(batch_encoding.labels, self.config.pad_token_id)
+        shifted_labels = shift_tokens_left(batch["labels"], self.config.pad_token_id)
 
         if self.hparams.ignore_pad_token_for_loss:
-            labels.masked_fill_(labels == self.config.pad_token_id, -100)
+            shifted_labels.masked_fill_(
+                shifted_labels == self.config.pad_token_id, -100
+            )
 
         inputs = {
-            "input_ids": batch_encoding.input_ids,
-            "attention_mask": batch_encoding.attention_mask,
-            "decoder_input_ids": batch_encoding.labels,
-            "labels": labels,
+            "input_ids": batch["input_ids"],
+            "attention_mask": batch["attention_mask"],
+            "decoder_input_ids": batch["labels"],
+            "labels": shifted_labels,
         }
 
         return self.model(**inputs)

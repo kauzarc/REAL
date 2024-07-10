@@ -1,6 +1,8 @@
-from dataclasses import dataclass
+from typing import List, Dict, TypedDict
+
 from omegaconf import DictConfig
 from pytorch_lightning import LightningDataModule
+from torch import LongTensor
 from torch.utils.data import DataLoader
 from transformers import (
     PreTrainedTokenizerFast,
@@ -10,10 +12,10 @@ from transformers import (
 from datasets import load_dataset
 
 
-@dataclass
-class Batch:
-    inputs: list[str]
-    labels: list[str]
+class Batch(TypedDict):
+    input_ids: LongTensor
+    attention_mask: LongTensor
+    labels: LongTensor
 
 
 class PLDataModule(LightningDataModule):
@@ -29,7 +31,7 @@ class PLDataModule(LightningDataModule):
         self.tokenizer = tokenizer
         self.model = model
 
-        self.dataset = load_dataset(
+        self.datasets = load_dataset(
             conf.dataset_name,
             data_files={
                 "train": conf.train_file,
@@ -39,6 +41,11 @@ class PLDataModule(LightningDataModule):
             },
         )
 
+        self.column_names = self.datasets["train"].column_names
+
+        self.train_dataset = None
+        self.eval_dataset = None
+
         label_pad_token_id = (
             -100 if conf.ignore_pad_token_for_loss else self.tokenizer.pad_token_id
         )
@@ -46,17 +53,54 @@ class PLDataModule(LightningDataModule):
             self.tokenizer, self.model, label_pad_token_id=label_pad_token_id
         )
 
-    def prepare_data(self):
-        raise NotImplementedError()
+    def prepare_data(self) -> None:
 
-    def preprocess_function(self):
-        raise NotImplementedError()
+        self.train_dataset = self.datasets["train"].map(
+            self.preprocess_function,
+            batched=True,
+            num_proc=self.conf.preprocessing_num_workers,
+            remove_columns=self.column_names,
+            load_from_cache_file=not self.conf.overwrite_cache,
+            cache_file_name=self.conf.train_file.replace(".jsonl", "-")
+            + self.conf.dataset_name.split("/")[-1].replace(".py", ".cache"),
+        )
+
+        self.eval_dataset = self.datasets["validation"].map(
+            self.preprocess_function,
+            batched=True,
+            num_proc=self.conf.preprocessing_num_workers,
+            remove_columns=self.column_names,
+            load_from_cache_file=not self.conf.overwrite_cache,
+            cache_file_name=self.conf.validation_file.replace(".jsonl", "-")
+            + self.conf.dataset_name.split("/")[-1].replace(".py", ".cache"),
+        )
+
+    def preprocess_function(self, examples: Dict[str, List]) -> Batch:
+        model_inputs = self.tokenizer(
+            examples["context"],
+            max_length=self.conf.max_source_length,
+            truncation=True,
+            return_tensors="pt",
+        )
+
+        with self.tokenizer.as_target_tokenizer():
+            labels = self.tokenizer(
+                examples["triplets"],
+                max_length=self.conf.max_target_length,
+                truncation=True,
+                return_tensors="pt",
+            )
+
+        return Batch(
+            input_ids=model_inputs["input_ids"],
+            attention_mask=model_inputs["attention_mask"],
+            labels=labels["input_ids"],
+        )
 
     def train_dataloader(self) -> DataLoader:
         return DataLoader(
             self.train_dataset,
             batch_size=self.conf.train_batch_size,
-            # sampler=train_sampler,
             collate_fn=self.data_collator,
             drop_last=self.conf.dataloader_drop_last,
             num_workers=self.conf.dataloader_num_workers,
@@ -65,4 +109,11 @@ class PLDataModule(LightningDataModule):
         )
 
     def val_dataloader(self) -> DataLoader:
-        raise NotImplementedError()
+        return DataLoader(
+            self.eval_dataset,
+            batch_size=self.conf.eval_batch_size,
+            collate_fn=self.data_collator,
+            drop_last=self.conf.dataloader_drop_last,
+            num_workers=self.conf.dataloader_num_workers,
+            pin_memory=self.conf.dataloader_pin_memory,
+        )
