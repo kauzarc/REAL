@@ -6,4 +6,8 @@ validation_file: "data/rebel/en_val.jsonl"
 test_file: "data/rebel/en_test.jsonl"
 tokens_file: "data/rebel_dataset/tokens.txt"
 
+overwrite_cache: False
+preprocessing_num_workers:
+max_source_length: 256
+max_target_length: 128
 ignore_pad_token_for_loss: True

@@ -1,9 +1,9 @@
-# optimization
+train_batch_size: 4
+eval_batch_size: 8
 gradient_acc_steps: 8
 gradient_clip_value: 10.0
 max_steps: 1200000
 
-# evaluation and persistence
 apply_early_stopping: True
 val_check_interval: 0.5
 val_percent_check: 0.1
@@ -11,7 +11,6 @@ monitor_var: "val_loss"
 monitor_var_mode: "min"
 patience: 50
 
-# core
 gpus: 1
 precision: 16
 amp_level:
@@ -25,6 +24,9 @@ adam_beta2: 0.999
 adam_epsilon: 0.00000001
 
 seed: 42
+
+dataloader_num_workers: 4
+dataloader_pin_memory: True
 
 lr_scheduler: "inverse_square_root"
 warmup_steps: 1000

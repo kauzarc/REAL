@@ -54,7 +54,6 @@ class PLDataModule(LightningDataModule):
         )
 
     def prepare_data(self) -> None:
-
         self.train_dataset = self.datasets["train"].map(
             self.preprocess_function,
             batched=True,
@@ -102,7 +101,6 @@ class PLDataModule(LightningDataModule):
             self.train_dataset,
             batch_size=self.conf.train_batch_size,
             collate_fn=self.data_collator,
-            drop_last=self.conf.dataloader_drop_last,
             num_workers=self.conf.dataloader_num_workers,
             pin_memory=self.conf.dataloader_pin_memory,
             shuffle=True,
