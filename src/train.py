@@ -66,7 +66,7 @@ def main(conf: DictConfig):
     pl_module = PLModule(conf, config, tokenizer, model)
 
     logger = TensorBoardLogger(
-        conf.dataset_name.split("/")[-1].replace(".py", ""),
+        "tensorboard_logs/" + conf.dataset_name.split("/")[-1].replace(".py", ""),
     )
 
     trainer = Trainer(
