@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 import hydra
@@ -21,20 +22,20 @@ def callbacks(conf: DictConfig) -> List[Callback]:
     if conf.apply_early_stopping:
         result.append(
             EarlyStopping(
-                monitor=conf.monitor_var,
-                mode=conf.monitor_var_mode,
-                patience=conf.patience,
+                monitor=conf.train.monitor_var,
+                mode=conf.train.monitor_var_mode,
+                patience=conf.train.patience,
             )
         )
 
     result.append(
         ModelCheckpoint(
-            monitor=conf.monitor_var,
-            dirpath=f"experiments/{conf.model_name}",
-            save_top_k=conf.save_top_k,
+            monitor=conf.train.monitor_var,
+            dirpath=f"experiments/{conf.train.model_name}",
+            save_top_k=conf.train.save_top_k,
             verbose=True,
             save_last=True,
-            mode=conf.monitor_var_mode,
+            mode=conf.train.monitor_var_mode,
         )
     )
 
@@ -43,21 +44,21 @@ def callbacks(conf: DictConfig) -> List[Callback]:
     return result
 
 
-@hydra.main(config_path="../conf/", config_name="config")
+@hydra.main(version_base=None, config_path="../conf/", config_name="config")
 def main(conf: DictConfig):
-    seed_everything(conf.seed)
+    seed_everything(conf.train.seed)
 
-    config = AutoConfig.from_pretrained(conf.config_name)
+    print(os.getcwd())
+    config = AutoConfig.from_pretrained(conf.model.config_name)
 
-    tokenizer = AutoTokenizer.from_pretrained(conf.tokenizer_name)
-    with open(conf.tokens_file, "r") as tokens_file:
+    tokenizer = AutoTokenizer.from_pretrained(conf.model.tokenizer_name)
+    with open(conf.data.tokens_file, "r") as tokens_file:
         tokenizer.add_special_tokens(
             {"additional_special_tokens": [f"<{token}>" for token in tokens_file]},
-            replace_additional_special_tokens=False,
         )
 
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        conf.model_name_or_path,
+        conf.model.model_name_or_path,
         config=config,
     )
     model.resize_token_embeddings(len(tokenizer))
@@ -66,22 +67,24 @@ def main(conf: DictConfig):
     pl_module = PLModule(conf, config, tokenizer, model)
 
     logger = TensorBoardLogger(
-        "tensorboard_logs/" + conf.dataset_name.split("/")[-1].replace(".py", ""),
+        "tensorboard_logs/" + conf.data.dataset_name.split("/")[-1].replace(".py", ""),
     )
 
     trainer = Trainer(
-        gpus=conf.gpus,
-        accumulate_grad_batches=conf.gradient_acc_steps,
-        gradient_clip_val=conf.gradient_clip_value,
-        val_check_interval=conf.val_check_interval,
+        gpus=conf.train.gpus,
+        accumulate_grad_batches=conf.train.gradient_acc_steps,
+        gradient_clip_val=conf.train.gradient_clip_value,
+        val_check_interval=conf.train.val_check_interval,
         callbacks=callbacks(conf),
-        max_steps=conf.max_steps,
-        precision=conf.precision,
-        amp_level=conf.amp_level,
+        max_steps=conf.train.max_steps,
+        precision=conf.train.precision,
+        amp_level=conf.train.amp_level,
         logger=logger,
-        limit_val_batches=conf.val_percent_check,
+        limit_val_batches=conf.train.val_percent_check,
     )
-    trainer.fit(pl_module, datamodule=pl_data_module, ckpt_path=conf.checkpoint_path)
+    trainer.fit(
+        pl_module, datamodule=pl_data_module, ckpt_path=conf.train.checkpoint_path
+    )
 
 
 if __name__ == "__main__":
