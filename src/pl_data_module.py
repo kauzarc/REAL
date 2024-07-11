@@ -1,4 +1,5 @@
-from typing import List, Dict, TypedDict
+from typing import List, Dict
+from typing_extensions import TypedDict
 
 from omegaconf import DictConfig
 from pytorch_lightning import LightningDataModule
