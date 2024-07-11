@@ -43,7 +43,7 @@ def callbacks(conf: DictConfig) -> List[Callback]:
     return result
 
 
-@hydra.main(config_path="conf/", config_name="config")
+@hydra.main(config_path="../conf/", config_name="config")
 def main(conf: DictConfig):
     seed_everything(conf.seed)
 
