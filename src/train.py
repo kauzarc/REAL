@@ -3,7 +3,7 @@ from typing import List
 import hydra
 from omegaconf import DictConfig
 from pytorch_lightning import seed_everything, Trainer, Callback
-from pytorch_lightning.loggers import WandbLogger
+from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import (
     EarlyStopping,
     ModelCheckpoint,
@@ -65,9 +65,8 @@ def main(conf: DictConfig):
     pl_data_module = PLDataModule(conf, tokenizer, model)
     pl_module = PLModule(conf, config, tokenizer, model)
 
-    wandb_logger = WandbLogger(
-        project=conf.dataset_name.split("/")[-1].replace(".py", ""),
-        name=conf.model_name_or_path.split("/")[-1],
+    logger = TensorBoardLogger(
+        conf.dataset_name.split("/")[-1].replace(".py", ""),
     )
 
     trainer = Trainer(
@@ -79,7 +78,7 @@ def main(conf: DictConfig):
         max_steps=conf.max_steps,
         precision=conf.precision,
         amp_level=conf.amp_level,
-        logger=wandb_logger,
+        logger=logger,
         limit_val_batches=conf.val_percent_check,
     )
     trainer.fit(pl_module, datamodule=pl_data_module, ckpt_path=conf.checkpoint_path)
