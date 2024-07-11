@@ -10,4 +10,4 @@
 #SBATCH --mail-type=ALL
 
 source .venv/bin/activate
-srun python train.py
+srun python src/train.py
