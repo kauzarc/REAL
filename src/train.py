@@ -19,7 +19,7 @@ from pl_module import PLModule
 def callbacks(conf: DictConfig) -> List[Callback]:
     result = []
 
-    if conf.apply_early_stopping:
+    if conf.train.apply_early_stopping:
         result.append(
             EarlyStopping(
                 monitor=conf.train.monitor_var,
