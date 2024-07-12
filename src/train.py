@@ -48,7 +48,6 @@ def callbacks(conf: DictConfig) -> List[Callback]:
 def main(conf: DictConfig):
     seed_everything(conf.train.seed)
 
-    print(os.getcwd())
     config = AutoConfig.from_pretrained(conf.model.config_name)
 
     tokenizer = AutoTokenizer.from_pretrained(conf.model.tokenizer_name)
