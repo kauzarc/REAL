@@ -80,7 +80,6 @@ class PLDataModule(LightningDataModule):
             examples["context"],
             max_length=self.conf.data.max_source_length,
             truncation=True,
-            return_tensors="pt",
         )
 
         with self.tokenizer.as_target_tokenizer():
@@ -88,7 +87,6 @@ class PLDataModule(LightningDataModule):
                 examples["triplets"],
                 max_length=self.conf.data.max_target_length,
                 truncation=True,
-                return_tensors="pt",
             )
 
         return Batch(
