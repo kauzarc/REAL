@@ -21,7 +21,9 @@ class PLModule(LightningModule):
     ):
         super().__init__()
 
-        self.save_hyperparameters(omegaconf)
+        self.save_hyperparameters(
+            {**omegaconf.data, **omegaconf.model, **omegaconf.train}
+        )
         self.config = config
         self.tokenizer = tokenizer
         self.model = model
