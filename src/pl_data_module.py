@@ -32,18 +32,14 @@ class PLDataModule(LightningDataModule):
         self.tokenizer = tokenizer
         self.model = model
 
-        data_files = {
-            "train": conf.data.train_file,
-            "dev": conf.data.validation_file,
-            "test": conf.data.test_file,
-            "tokens": conf.data.tokens_file,
-        }
-
-        print(data_files)
-
         self.datasets = load_dataset(
             conf.data.dataset_name,
-            data_files=data_files,
+            data_files={
+                "train": conf.data.train_file,
+                "dev": conf.data.validation_file,
+                "test": conf.data.test_file,
+                "tokens": conf.data.tokens_file,
+            },
         )
 
         self.column_names = self.datasets["train"].column_names

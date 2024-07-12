@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="static path">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/rebel.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/rebel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/2024-07-12/11-36-29/.hydra/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/2024-07-12/11-36-29/.hydra/hydra.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/2024-07-12/11-36-29/.hydra/overrides.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/2024-07-12/11-36-29/train.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl_data_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,22 +55,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests for test_model.TestModel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.extract_tokens.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.model_saving.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pl_module.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tokenizer_saving.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kauzarc/PycharmProjects/REAL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python tests.Python tests for test_model.TestModel.executor": "Run",
+    "Python.extract_tokens.executor": "Run",
+    "Python.find_duplicate.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.model_saving.executor": "Run",
+    "Python.pl_module.executor": "Run",
+    "Python.tokenizer_saving.executor": "Run",
+    "Python.train.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/kauzarc/PycharmProjects/REAL",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -79,7 +84,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train">
+  <component name="RunManager" selected="Python.find_duplicate">
     <configuration name="extract_tokens" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="REAL" />
       <option name="ENV_FILES" value="" />
@@ -95,6 +100,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/extract_tokens.py" />
       <option name="PARAMETERS" value="rebel" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="find_duplicate" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="REAL" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/find_duplicate.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -190,36 +217,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_model.TestModel" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="REAL" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_model.TestModel&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.find_duplicate" />
       <item itemvalue="Python.train" />
       <item itemvalue="Python.extract_tokens" />
       <item itemvalue="Python.pl_module" />
       <item itemvalue="Python.model_saving" />
-      <item itemvalue="Python tests.Python tests for test_model.TestModel" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.find_duplicate" />
         <item itemvalue="Python.train" />
         <item itemvalue="Python.extract_tokens" />
         <item itemvalue="Python.model_saving" />
         <item itemvalue="Python.pl_module" />
-        <item itemvalue="Python tests.Python tests for test_model.TestModel" />
       </list>
     </recent_temporary>
   </component>
@@ -432,7 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720790389693</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="testing">
+      <option name="closed" value="true" />
+      <created>1720795025360</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1720795025360</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,6 +490,7 @@
     <MESSAGE value="update config_path" />
     <MESSAGE value="conf" />
     <MESSAGE value="static path" />
-    <option name="LAST_COMMIT_MESSAGE" value="static path" />
+    <MESSAGE value="testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing" />
   </component>
 </project>

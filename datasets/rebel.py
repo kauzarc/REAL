@@ -59,7 +59,7 @@ class Document(TypedDict):
 
 class RebelConfig(BuilderConfig):
     def __init__(self, **kwargs):
-        super().__init__(kwargs)
+        super().__init__(**kwargs)
 
 
 class Rebel(GeneratorBasedBuilder):
@@ -106,37 +106,29 @@ class Rebel(GeneratorBasedBuilder):
     ) -> Generator[Tuple[str, dict], None, None]:
         logging.info(f"generating examples from {filepath}")
 
-        with open(self.config.data_files["tokens"]) as file:
-            tokens = set(file)
+        with open(self.config.data_files["tokens"][0], "r") as file:
+            tokens = {line.replace("\n", "") for line in file}
 
         sentence_re = re.compile(r"\b.+?[.!?]+(?=\s|$)")
 
-        with open(filepath, "r") as file:
+        with open(filepath[0], "r") as file:
             for line in file:
                 document: Document = json.loads(line)
 
                 if len(document["triples"]) == 0:
                     continue
 
-                text_boundaries: List[List[Tuple[int, int]]] = [[]]
+                count = 0
+                context = ""
+                span = None
                 for match in sentence_re.finditer(document["text"]):
-                    text_boundaries[-1].append(match.span())
+                    if span is None:
+                        span = match.span()
+                    else:
+                        span = (span[0], match.end())
+                    start, end = span
 
-                    if not any(
-                        entity["boundaries"][0] < match.end() < entity["boundaries"][1]
-                        for entity in document["entities"]
-                    ):
-                        text_boundaries.append([])
-                text_boundaries.pop()
-
-                for i, boundaries in enumerate(text_boundaries):
-                    id_ = document["uri"] + "-" + str(i)
-                    text = " ".join(
-                        document["text"][start:end] for (start, end) in boundaries
-                    )
-
-                    start = boundaries[0][0]
-                    end = boundaries[-1][1]
+                    context += " " + document["text"][match.start() : match.end()]
 
                     entities = sorted(
                         (
@@ -181,9 +173,16 @@ class Rebel(GeneratorBasedBuilder):
                             )
                         )
 
-                    yield id_, {
-                        "title": document["title"],
-                        "context": text,
-                        "id": id_,
-                        "triplets": decoder_output,
-                    }
+                    if len(decoder_output) > 0:
+                        id_ = document["docid"] + "-" + str(count)
+
+                        yield id_, {
+                            "title": document["title"],
+                            "context": context,
+                            "id": id_,
+                            "triplets": decoder_output,
+                        }
+
+                        count += 1
+                        context = ""
+                        span = None
