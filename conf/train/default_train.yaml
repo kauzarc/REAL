@@ -13,7 +13,7 @@ patience: 50
 model_name: "default_name"
 save_top_k: 3
 
-gpus: 1
+gpus: 2
 precision: 16
 amp_level:
 
