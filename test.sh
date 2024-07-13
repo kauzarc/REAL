@@ -4,7 +4,7 @@
 #SBATCH --qos=debug
 #SBATCH --job-name=real_test
 #SBATCH --output=logs/test.txt
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:1,cpu:8
 #
 #SBATCH --mail-user=julien.rolland@universite-paris-saclay.fr
 #SBATCH --mail-type=ALL
