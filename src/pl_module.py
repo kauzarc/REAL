@@ -29,7 +29,7 @@ class PLModule(LightningModule):
     def forward(self, batch: Batch, batch_idx: int) -> Seq2SeqLMOutput:
         shifted_labels = shift_tokens_left(batch["labels"], self.config.pad_token_id)
 
-        if self.hparams.ignore_pad_token_for_loss:
+        if self.hparams.data.ignore_pad_token_for_loss:
             shifted_labels.masked_fill_(
                 shifted_labels == self.config.pad_token_id, -100
             )
