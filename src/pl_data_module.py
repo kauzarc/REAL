@@ -110,7 +110,6 @@ class PLDataModule(LightningDataModule):
             self.eval_dataset,
             batch_size=self.conf.train.eval_batch_size,
             collate_fn=self.data_collator,
-            drop_last=self.conf.data.dataloader_drop_last,
             num_workers=self.conf.train.dataloader_num_workers,
             pin_memory=self.conf.train.dataloader_pin_memory,
         )
