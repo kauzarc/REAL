@@ -98,19 +98,19 @@ class PLDataModule(LightningDataModule):
     def train_dataloader(self) -> DataLoader:
         return DataLoader(
             self.train_dataset,
-            batch_size=self.conf.data.train_batch_size,
+            batch_size=self.conf.train.train_batch_size,
             collate_fn=self.data_collator,
-            num_workers=self.conf.data.dataloader_num_workers,
-            pin_memory=self.conf.data.dataloader_pin_memory,
+            num_workers=self.conf.train.dataloader_num_workers,
+            pin_memory=self.conf.train.dataloader_pin_memory,
             shuffle=True,
         )
 
     def val_dataloader(self) -> DataLoader:
         return DataLoader(
             self.eval_dataset,
-            batch_size=self.conf.data.eval_batch_size,
+            batch_size=self.conf.train.eval_batch_size,
             collate_fn=self.data_collator,
             drop_last=self.conf.data.dataloader_drop_last,
-            num_workers=self.conf.data.dataloader_num_workers,
-            pin_memory=self.conf.data.dataloader_pin_memory,
+            num_workers=self.conf.train.dataloader_num_workers,
+            pin_memory=self.conf.train.dataloader_pin_memory,
         )
