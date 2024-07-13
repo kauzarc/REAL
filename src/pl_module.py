@@ -41,8 +41,6 @@ class PLModule(LightningModule):
             "labels": shifted_labels,
         }
 
-        print(inputs)
-
         return self.model(**inputs)
 
     def training_step(self, batch: Batch, batch_idx: int) -> FloatTensor:

@@ -47,7 +47,9 @@ class PLDataModule(LightningDataModule):
         self.train_dataset = None
         self.eval_dataset = None
 
-        self.data_collator = DataCollatorForSeq2Seq(self.tokenizer, self.model)
+        self.data_collator = DataCollatorForSeq2Seq(
+            self.tokenizer, self.model, label_pad_token_id=tokenizer.pad_token_id
+        )
 
     def prepare_data(self) -> None:
         self.train_dataset = self.datasets["train"].map(

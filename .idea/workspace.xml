@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="cpu 8">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="out of index">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl_data_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_module.py" afterDir="false" />
@@ -541,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720879954489</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="out of index">
+      <option name="closed" value="true" />
+      <created>1720882435062</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1720882435062</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -569,7 +577,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="triplet tokenizer" />
     <MESSAGE value="refactor" />
     <MESSAGE value="requirements" />
     <MESSAGE value="pl_module" />
@@ -594,6 +601,7 @@
     <MESSAGE value="drop last" />
     <MESSAGE value="hparams" />
     <MESSAGE value="cpu 8" />
-    <option name="LAST_COMMIT_MESSAGE" value="cpu 8" />
+    <MESSAGE value="out of index" />
+    <option name="LAST_COMMIT_MESSAGE" value="out of index" />
   </component>
 </project>
