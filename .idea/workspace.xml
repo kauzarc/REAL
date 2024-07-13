@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="save_hyperparameters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_module.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +49,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.Python tests for test_model.TestModel.executor": "Run",
-    "Python.extract_tokens.executor": "Run",
-    "Python.find_duplicate.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.model_saving.executor": "Run",
-    "Python.pl_module.executor": "Run",
-    "Python.tokenizer_saving.executor": "Run",
-    "Python.train.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/kauzarc/PycharmProjects/REAL",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_model.TestModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_tokens.executor&quot;: &quot;Run&quot;,
+    &quot;Python.find_duplicate.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model_saving.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pl_module.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tokenizer_saving.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kauzarc/PycharmProjects/REAL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -213,12 +212,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.find_duplicate" />
-      <item itemvalue="Python.train" />
       <item itemvalue="Python.extract_tokens" />
-      <item itemvalue="Python.pl_module" />
+      <item itemvalue="Python.find_duplicate" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.model_saving" />
+      <item itemvalue="Python.pl_module" />
+      <item itemvalue="Python.train" />
     </list>
     <recent_temporary>
       <list>
@@ -479,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720823250572</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="save_hyperparameters">
+      <option name="closed" value="true" />
+      <created>1720823741822</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1720823741822</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

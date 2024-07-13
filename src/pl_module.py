@@ -65,22 +65,22 @@ class PLModule(LightningModule):
         )
 
         grouped_parameters = [
-            {"params": params_decay, "weight_decay": self.hparams.weight_decay},
+            {"params": params_decay, "weight_decay": self.hparams.train.weight_decay},
             {"params": params_no_decay, "weight_decay": 0.0},
         ]
 
         args = {
-            "lr": self.hparams.learning_rate,
-            "betas": (self.hparams.adam_beta1, self.hparams.adam_beta2),
-            "eps": self.hparams.adam_epsilon,
+            "lr": self.hparams.train.learning_rate,
+            "betas": (self.hparams.train.adam_beta1, self.hparams.train.adam_beta2),
+            "eps": self.hparams.train.adam_epsilon,
         }
 
         optimizer = AdamW(grouped_parameters, **args)  # type: ignore
         scheduler = get_scheduler(
-            self.hparams.lr_scheduler,
+            self.hparams.train.lr_scheduler,
             optimizer,
-            num_warmup_steps=self.hparams.warmup_steps,
-            num_training_steps=self.hparams.max_steps,
+            num_warmup_steps=self.hparams.train.warmup_steps,
+            num_training_steps=self.hparams.train.max_steps,
         )
 
         return [optimizer], [{"scheduler": scheduler, "interval": "step"}]
