@@ -30,5 +30,5 @@ seed: 42
 dataloader_num_workers: 4
 dataloader_pin_memory: True
 
-lr_scheduler: "inverse_square_root"
+lr_scheduler: "linear"
 warmup_steps: 1000
