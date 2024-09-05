@@ -6,6 +6,7 @@
 #SBATCH --output=logs/test.txt
 #SBATCH --gres=gpu:2
 #SBATCH -c8
+#SBATCH --mem=128G
 #
 #SBATCH --mail-user=julien.rolland@universite-paris-saclay.fr
 #SBATCH --mail-type=ALL
