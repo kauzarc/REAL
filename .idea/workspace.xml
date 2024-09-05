@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="pad token id">
-      <change afterPath="$PROJECT_DIR$/conf/train/ddp_spawn.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/train/single_gpu.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/test_ddp_spawn_strategy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/test_single_gpu.sh" afterDir="false" />
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="different tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/data/rebel_data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/data/rebel_data.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/train/default_train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/train/default_train.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -580,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720883863217</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="different tests">
+      <option name="closed" value="true" />
+      <created>1725541041216</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1725541041216</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -608,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="requirements" />
     <MESSAGE value="pl_module" />
     <MESSAGE value="model saving" />
     <MESSAGE value="extract tokens" />
@@ -633,6 +633,7 @@
     <MESSAGE value="cpu 8" />
     <MESSAGE value="out of index" />
     <MESSAGE value="pad token id" />
-    <option name="LAST_COMMIT_MESSAGE" value="pad token id" />
+    <MESSAGE value="different tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="different tests" />
   </component>
 </project>
