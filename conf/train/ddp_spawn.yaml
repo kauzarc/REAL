@@ -16,7 +16,7 @@ save_top_k: 3
 gpus: 2
 precision: 16
 amp_level:
-training_strategy: "ddp"
+training_strategy: "ddp_spawn"
 
 checkpoint_path:
 

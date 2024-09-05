@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="out of index">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="pad token id">
+      <change afterPath="$PROJECT_DIR$/conf/train/ddp_spawn.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conf/train/single_gpu.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/test_ddp_spawn_strategy.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/test_single_gpu.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl_data_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/data/rebel_data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/data/rebel_data.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/train/default_train.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/train/default_train.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +35,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kauzarc&quot;
+  }
+}</component>
   <component name="GitLabMergeRequestFiltersHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPENED&quot;,
@@ -45,6 +57,12 @@
     &quot;second&quot;: &quot;42685d7b-c3fd-4346-94a3-5b2838484b7f&quot;
   }
 }</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kauzarc/REAL.git&quot;,
+    &quot;accountId&quot;: &quot;6e14f4d3-ce26-4ed1-b305-5be4c9813518&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -56,25 +74,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python tests.Python tests for test_model.TestModel.executor&quot;: &quot;Run&quot;,
-    &quot;Python.extract_tokens.executor&quot;: &quot;Run&quot;,
-    &quot;Python.find_duplicate.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.model_saving.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pl_module.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tokenizer_saving.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kauzarc/PycharmProjects/REAL&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python tests.Python tests for test_model.TestModel.executor": "Run",
+    "Python.extract_tokens.executor": "Run",
+    "Python.find_duplicate.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.model_saving.executor": "Run",
+    "Python.pl_module.executor": "Run",
+    "Python.tokenizer_saving.executor": "Run",
+    "Python.train.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/kauzarc/PycharmProjects/REAL/scripts",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
+      <recent name="$PROJECT_DIR$/conf/train" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -549,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720882435062</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="pad token id">
+      <option name="closed" value="true" />
+      <created>1720883863217</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1720883863217</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,7 +594,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -577,7 +608,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor" />
     <MESSAGE value="requirements" />
     <MESSAGE value="pl_module" />
     <MESSAGE value="model saving" />
@@ -602,6 +632,7 @@
     <MESSAGE value="hparams" />
     <MESSAGE value="cpu 8" />
     <MESSAGE value="out of index" />
-    <option name="LAST_COMMIT_MESSAGE" value="out of index" />
+    <MESSAGE value="pad token id" />
+    <option name="LAST_COMMIT_MESSAGE" value="pad token id" />
   </component>
 </project>

@@ -80,7 +80,7 @@ def main(conf: DictConfig):
         amp_level=conf.train.amp_level,
         logger=logger,
         limit_val_batches=conf.train.val_percent_check,
-	strategy="ddp",
+        strategy=conf.train.training_strategy,
     )
     trainer.fit(
         pl_module, datamodule=pl_data_module, ckpt_path=conf.train.checkpoint_path
