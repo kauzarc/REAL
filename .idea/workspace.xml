@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="error in path">
+    <list default="true" id="0f27eeee-2d6c-497b-a230-d8e2be49cf73" name="Changes" comment="validation -&gt; dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl_data_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl_data_module.py" afterDir="false" />
     </list>
@@ -589,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725541392325</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="validation -&gt; dev">
+      <option name="closed" value="true" />
+      <created>1726155104893</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1726155104893</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -617,7 +625,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="model saving" />
     <MESSAGE value="extract tokens" />
     <MESSAGE value="rebel script" />
     <MESSAGE value="PLDataModule" />
@@ -642,6 +649,7 @@
     <MESSAGE value="pad token id" />
     <MESSAGE value="different tests" />
     <MESSAGE value="error in path" />
-    <option name="LAST_COMMIT_MESSAGE" value="error in path" />
+    <MESSAGE value="validation -&gt; dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation -&gt; dev" />
   </component>
 </project>
