@@ -62,7 +62,7 @@ class PLDataModule(LightningDataModule):
             + self.conf.data.dataset_name.split("/")[-1].replace(".py", ".cache"),
         )
 
-        self.eval_dataset = self.datasets["validation"].map(
+        self.eval_dataset = self.datasets["dev"].map(
             self.preprocess_function,
             batched=True,
             num_proc=self.conf.data.preprocessing_num_workers,
